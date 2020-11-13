@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:yellow_class/camera/camera.dart';
-import 'package:yellow_class/dragable.dart';
-import 'package:yellow_class/video_player/video_player.dart';
-import 'package:yellow_class/video_screen.dart';
+import 'package:yellow_class/screens/video_screen.dart';
+import 'package:yellow_class/video_player/mock_data.dart';
 
 void main() {
   runApp(MyApp());
@@ -13,12 +11,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Yellow Class Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.yellow,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: 'Yellow Class'),
     );
   }
 }
@@ -32,14 +30,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,52 +44,15 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => CameraScreen()),
-                );
-              },
-              child: Text('Task', style: TextStyle(fontSize: 20)),
-            ),
-            RaisedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Drag()),
-                );
-              },
-              child: Text('Draggable', style: TextStyle(fontSize: 20)),
-            ),
-            RaisedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => LandscapePlayer()),
-                );
-              },
-              child: Text('Video', style: TextStyle(fontSize: 20)),
-            ),
-            RaisedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => VideoScreen()),
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          VideoScreen(mockData["items"][0]["trailer_url"])),
                 );
               },
               child: Text('Final Screen', style: TextStyle(fontSize: 20)),
             ),
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
           ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
       ),
     );
   }

@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:camera/camera.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flick_video_player/flick_video_player.dart';
 import 'package:video_player/video_player.dart';
-
-import 'package:yellow_class/video_player/mock_data.dart';
+import 'package:draggable_widget/draggable_widget.dart';
 import 'package:yellow_class/video_player/controls.dart';
+import 'package:flutter/services.dart';
 
+// ignore: must_be_immutable
 class VideoScreen extends StatefulWidget {
+  String url;
+
+  VideoScreen(String url) {
+    this.url = url;
+  }
   @override
   _VideoScreenState createState() => _VideoScreenState();
 }
@@ -20,6 +25,7 @@ class _VideoScreenState extends State<VideoScreen> {
   List cameras;
   int selectedCameraIndex;
   String imgPath;
+  DragController dragController = DragController();
 
   Future initCamera(CameraDescription cameraDescription) async {
     if (cameraController != null) {
@@ -59,10 +65,8 @@ class _VideoScreenState extends State<VideoScreen> {
             color: Colors.white, fontSize: 20.0, fontWeight: FontWeight.bold),
       );
     }
-    return Container(
-      //aspectRatio: cameraController.value.aspectRatio,
-      height: 100,
-      width: 100,
+    return AspectRatio(
+      aspectRatio: cameraController.value.aspectRatio,
       child: CameraPreview(cameraController),
     );
   }
@@ -70,14 +74,17 @@ class _VideoScreenState extends State<VideoScreen> {
   @override
   void initState() {
     super.initState();
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.landscapeRight,
+      DeviceOrientation.landscapeLeft,
+    ]);
     flickManager = FlickManager(
-        videoPlayerController:
-            VideoPlayerController.network(mockData["items"][2]["trailer_url"]));
+        videoPlayerController: VideoPlayerController.network(widget.url));
     availableCameras().then((value) {
       cameras = value;
       if (cameras.length > 0) {
         setState(() {
-          selectedCameraIndex = 0;
+          selectedCameraIndex = 1;
         });
         initCamera(cameras[selectedCameraIndex]).then((value) {});
       } else {
@@ -91,6 +98,10 @@ class _VideoScreenState extends State<VideoScreen> {
   @override
   void dispose() {
     flickManager.dispose();
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.landscapeRight,
+      DeviceOrientation.landscapeLeft,
+    ]);
     super.dispose();
   }
 
@@ -110,9 +121,28 @@ class _VideoScreenState extends State<VideoScreen> {
               controls: LandscapePlayerControls(),
             ),
           ),
-          Align(
-            alignment: Alignment.topRight,
-            child: cameraPreview(),
+          DraggableWidget(
+            bottomMargin: 30,
+            topMargin: 20,
+            intialVisibility: true,
+            horizontalSapce: 0,
+            shadowBorderRadius: 0,
+            child: Container(
+              height: 150,
+              margin: const EdgeInsets.all(1.0),
+              padding: const EdgeInsets.all(1.0),
+              decoration:
+                  BoxDecoration(border: Border.all(color: Colors.yellowAccent)),
+              child: RotatedBox(
+                quarterTurns: 3,
+                child: Container(
+                  height: 150,
+                  child: cameraPreview(),
+                ),
+              ),
+            ),
+            initialPosition: AnchoringPosition.bottomLeft,
+            dragController: dragController,
           ),
         ],
       ),
