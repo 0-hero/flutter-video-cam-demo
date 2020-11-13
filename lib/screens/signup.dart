@@ -22,10 +22,20 @@ class _YellowClassSignUpState extends State<YellowClassSignUp> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           SafeArea(
-              child: Container(
-                  margin: EdgeInsets.only(left: 16, right: 16),
-                  child: Icon(Icons.arrow_back,
-                      color: yellow_class_colorPrimary, size: 30))),
+            child: Container(
+              margin: EdgeInsets.only(left: 16, right: 16),
+              child: IconButton(
+                icon: Icon(
+                  Icons.arrow_back,
+                  color: yellow_class_colorPrimary,
+                  size: 30,
+                ),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ),
+          ),
           Expanded(
             child: SingleChildScrollView(
               child: Center(
@@ -43,7 +53,7 @@ class _YellowClassSignUpState extends State<YellowClassSignUp> {
                             border: Border.all(
                                 color: yellow_class_white, width: 4)),
                         child: CircleAvatar(
-                            backgroundImage: AssetImage("profile.png"),
+                            backgroundImage: AssetImage("images/profile.png"),
                             radius: width / 8.5),
                       ),
                       SizedBox(

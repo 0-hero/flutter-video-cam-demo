@@ -8,8 +8,6 @@ import 'package:yellow_class/utils/strings.dart';
 import 'package:yellow_class/utils/widget.dart';
 
 class YellowClassLogin extends StatefulWidget {
-  static String tag = '/YellowClassModrenMedicine';
-
   @override
   _YellowClassLoginState createState() => _YellowClassLoginState();
 }
@@ -56,7 +54,7 @@ class _YellowClassLoginState extends State<YellowClassLogin> {
                           border:
                               Border.all(color: yellow_class_white, width: 4)),
                       child: CircleAvatar(
-                          backgroundImage: AssetImage("profile.png"),
+                          backgroundImage: AssetImage("images/profile.png"),
                           radius: width / 7),
                     ),
                     SizedBox(
