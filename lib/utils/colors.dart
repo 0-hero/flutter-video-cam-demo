@@ -7,6 +7,7 @@ const yellow_class_blackColor = Color(0xFF000000);
 const yellow_class_greyColor = Color(0xFF808080);
 const yellow_class_layout_background = Color(0xFFF6F7FA);
 const yellow_class_white = Color(0xFFffffff);
+const yellow_class_colorPrimaryDark = Color(0xFFFd6f6D);
 
 const yellow_class_textColorPrimary = Color(0xFF38475B);
 const yellow_class_textColorSecondary = Color(0xFF778390);

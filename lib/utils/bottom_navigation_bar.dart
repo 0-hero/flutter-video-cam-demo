@@ -8,7 +8,6 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:yellow_class/utils/colors.dart';
 import 'package:vector_math/vector_math_64.dart' show Vector3;
 
 enum YellowClassBottomNavigationBarType {

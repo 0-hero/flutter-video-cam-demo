@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:yellow_class/models/models.dart';
 import 'package:yellow_class/utils/colors.dart';
 import 'package:yellow_class/utils/constant.dart';
-import 'package:yellow_class/utils/extension.dart';
 
 Widget text(String text,
     {var fontSize = textSizeMedium,
@@ -59,6 +58,36 @@ Row profileText(var label, {var maxline = 1}) {
   );
 }
 
+Text headerText(var text) {
+  return Text(text,
+      maxLines: 2,
+      style: TextStyle(
+        fontFamily: fontBold,
+        fontSize: 22,
+        color: yellow_class_greyColor,
+      ));
+}
+
+Text subHeadingText(var text) {
+  return Text(
+    text,
+    style: TextStyle(
+        fontFamily: fontRegular,
+        fontSize: textSizeMedium,
+        color: yellow_class_textColorSecondary),
+  );
+}
+
+Text headingText(var text) {
+  return Text(
+    text,
+    style: TextStyle(
+        fontFamily: fontBold,
+        fontSize: textSizeLargeMedium,
+        color: yellow_class_textColorPrimary),
+  );
+}
+
 class TopBar extends StatefulWidget {
   var titleName;
 
@@ -68,17 +97,6 @@ class TopBar extends StatefulWidget {
   State<StatefulWidget> createState() {
     return TopBarState();
   }
-}
-
-Text headerText(var text) {
-  return Text(
-    text,
-    maxLines: 2,
-    style: TextStyle(
-        fontFamily: fontBold,
-        fontSize: 22,
-        color: yellow_class_textColorPrimary),
-  );
 }
 
 class TopBarState extends State<TopBar> {
@@ -122,6 +140,33 @@ List<YellowClassPeopleModel> getRecommended() {
   var people3 = YellowClassPeopleModel();
   people3.img = "images/walk_3.png";
   list.add(people3);
+
+  return list;
+}
+
+List<CourseModel> getList() {
+  List<CourseModel> list = List<CourseModel>();
+  CourseModel model1 = CourseModel();
+  model1.courseName = "Yoga Class";
+  model1.description =
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry.";
+  model1.courseImage = "images/course1.png";
+
+  CourseModel model2 = CourseModel();
+  model2.courseName = "Ethical Hacking";
+  model2.description =
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry.";
+  model2.courseImage = "images/course2.jpg";
+
+  CourseModel model3 = CourseModel();
+  model3.courseName = "Programming";
+  model3.description =
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry.";
+  model3.courseImage = "images/course3.webp";
+
+  list.add(model1);
+  list.add(model2);
+  list.add(model3);
 
   return list;
 }

@@ -3,11 +3,9 @@ import 'package:yellow_class/screens/chart.dart';
 import 'package:yellow_class/screens/home.dart';
 import 'package:yellow_class/screens/profile.dart';
 import 'package:yellow_class/screens/search.dart';
-import 'package:yellow_class/screens/video_screen.dart';
 import 'package:yellow_class/screens/walkthrough.dart';
 import 'package:yellow_class/utils/bottom_navigation_bar.dart';
 import 'package:yellow_class/utils/colors.dart';
-import 'package:yellow_class/video_player/mock_data.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 Future<void> main() async {

@@ -73,6 +73,9 @@ flutter:
     - images/home_navigation.svg
     - images/more_navigation.svg
     - images/search_navigation.svg
+    - images/course1.png
+    - images/course2.jpg
+    - images/course3.webp
 
   #   - images/a_dot_ham.jpeg
 

@@ -65,7 +65,7 @@ class _ProfileState extends State<Profile> {
               child: Column(
                 children: <Widget>[
                   SizedBox(height: 50),
-                  text(mCurrentUser.displayName,
+                  text(mCurrentUser.displayName ?? "Name",
                       textColor: yellow_class_textColorPrimary,
                       fontSize: textSizeNormal,
                       fontFamily: fontMedium),
@@ -78,6 +78,16 @@ class _ProfileState extends State<Profile> {
                     child: view(),
                   ),
                   SizedBox(height: 16),
+                  YellowClassButton(
+                    textContent: "Sign Out",
+                    onPressed: () async {
+                      await FirebaseAuth.instance.signOut();
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => YellowClassLogin()));
+                    },
+                  )
                 ],
               ),
             ),

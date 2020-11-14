@@ -48,6 +48,15 @@ class YellowClassCoursesModel {
   var img = "";
 }
 
+class CourseModel {
+  var courseName = "";
+  var category = "";
+  var courseImage = "";
+  var profileImage = "";
+  var name = "";
+  var description = "";
+}
+
 class YellowClassChatModel {
   var name = "";
   var msg = "";
