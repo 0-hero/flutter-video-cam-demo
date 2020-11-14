@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:yellow_class/utils/calendar/CleanCalendar.dart';
-import 'package:yellow_class/utils/widget.dart';
 
-class Chart extends StatefulWidget {
+import 'CleanCalendar.dart';
+
+class CalenderHomePage extends StatefulWidget {
   @override
-  _ChartState createState() => _ChartState();
+  _CalenderHomePageState createState() => _CalenderHomePageState();
 }
 
-class _ChartState extends State<Chart> {
+class _CalenderHomePageState extends State<CalenderHomePage> {
   List _selectedEvents;
   DateTime _selectedDay = DateTime.now();
 
@@ -67,12 +67,24 @@ class _ChartState extends State<Chart> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Color(0xFF8998FF),
+          title: Text('Calender'),
+          leading: IconButton(
+            icon: Icon(
+              Icons.arrow_back,
+              color: Colors.white,
+            ),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+        ),
         body: Column(
           mainAxisSize: MainAxisSize.max,
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            TopBar("Upcoming Classes"),
             Container(
               margin: EdgeInsets.only(top: 25),
               child: Calendar(
