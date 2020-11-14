@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:yellow_class/screens/chart.dart';
 import 'package:yellow_class/screens/home.dart';
 import 'package:yellow_class/screens/profile.dart';
@@ -18,12 +19,17 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        primarySwatch: Colors.yellow,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
+    return Shortcuts(
+      shortcuts: <LogicalKeySet, Intent>{
+        LogicalKeySet(LogicalKeyboardKey.select): ActivateIntent(),
+      },
+      child: MaterialApp(
+        theme: ThemeData(
+          primarySwatch: Colors.yellow,
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+        ),
+        home: YellowClassWalkThrough(), //MyHomePage(title: 'Yellow Class'),
       ),
-      home: YellowClassWalkThrough(), //MyHomePage(title: 'Yellow Class'),
     );
   }
 }
