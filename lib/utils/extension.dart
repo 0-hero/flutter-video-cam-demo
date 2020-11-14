@@ -13,6 +13,10 @@ changeStatusColor(Color color) async {
   }
 }
 
+back(var context) {
+  Navigator.pop(context);
+}
+
 launchScreen(context, String tag, {Object arguments}) {
   if (arguments == null) {
     Navigator.pushNamed(context, tag);

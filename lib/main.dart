@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:yellow_class/screens/chart.dart';
+import 'package:yellow_class/screens/home.dart';
+import 'package:yellow_class/screens/profile.dart';
+import 'package:yellow_class/screens/search.dart';
 import 'package:yellow_class/screens/video_screen.dart';
 import 'package:yellow_class/screens/walkthrough.dart';
 import 'package:yellow_class/utils/bottom_navigation_bar.dart';
@@ -17,7 +21,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Yellow Class Demo',
       theme: ThemeData(
         primarySwatch: Colors.yellow,
         visualDensity: VisualDensity.adaptivePlatformDensity,
@@ -36,25 +39,38 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  var _selectedIndex = 0;
+  var selectedIndex = 0;
+  var pages = [
+    Home(),
+    Search(),
+    Chart(),
+    Profile(),
+  ];
   @override
   void initState() {
     super.initState();
-    _selectedIndex = 0;
+    selectedIndex = 0;
   }
 
   void _onItemTapped(int index) {
     setState(() {
-      _selectedIndex = index;
+      selectedIndex = index;
+      print(selectedIndex);
+      if (selectedIndex == 0) {
+        print("Home");
+      } else if (selectedIndex == 1) {
+        print("Search");
+      } else if (selectedIndex == 2) {
+        print("Chart");
+      } else if (selectedIndex == 3) {
+        print("Profile");
+      }
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
       bottomNavigationBar: Container(
         decoration: BoxDecoration(boxShadow: [
           BoxShadow(
@@ -75,13 +91,10 @@ class _MyHomePageState extends State<MyHomePage> {
               icon: "images/chart_navigation.svg",
             ),
             YellowClassBottomNavigationBarItem(
-              icon: "images/message_navigation.svg",
-            ),
-            YellowClassBottomNavigationBarItem(
               icon: "images/more_navigation.svg",
             ),
           ],
-          currentIndex: _selectedIndex,
+          currentIndex: selectedIndex,
           unselectedIconTheme:
               IconThemeData(color: yellow_class_textColorSecondary, size: 24),
           selectedIconTheme:
@@ -90,23 +103,8 @@ class _MyHomePageState extends State<MyHomePage> {
           type: YellowClassBottomNavigationBarType.fixed,
         ),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            RaisedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) =>
-                          VideoScreen(mockData["items"][0]["trailer_url"])),
-                );
-              },
-              child: Text('Final Screen', style: TextStyle(fontSize: 20)),
-            ),
-          ],
-        ),
+      body: SafeArea(
+        child: pages[selectedIndex],
       ),
     );
   }

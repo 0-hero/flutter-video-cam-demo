@@ -43,6 +43,7 @@ dependencies:
   shared_preferences: ^0.5.12+4
   flutter_volume_slider: ^1.0.6
   vector_math: ^2.0.8
+  nb_utils: ^3.2.11+3
 
 dev_dependencies:
   flutter_test:
