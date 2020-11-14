@@ -60,6 +60,10 @@ flutter:
   assets:
     - images/profile.png
     - images/google_logo.png
+    - images/WalkBackImg.png
+    - images/walk_1.png
+    - images/walk_2.png
+    - images/walk_3.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

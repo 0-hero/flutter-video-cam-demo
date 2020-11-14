@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yellow_class/screens/video_screen.dart';
+import 'package:yellow_class/screens/walkthrough.dart';
 import 'package:yellow_class/video_player/mock_data.dart';
-import 'package:yellow_class/screens/login.dart';
 
 void main() {
   runApp(MyApp());
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.yellow,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: YellowClassLogin(), //MyHomePage(title: 'Yellow Class'),
+      home: YellowClassWalkThrough(), //MyHomePage(title: 'Yellow Class'),
     );
   }
 }

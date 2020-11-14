@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-const yellow_class_colorPrimary = Color(0xFF345FFB);
+const yellow_class_colorPrimary = Color(0xFFFBC02D);
 const yellow_class_colorBlue = Color(0xFF4da6ff);
 const yellow_class_backgroundColor = Color(0xFFFAFAFA);
 const yellow_class_blackColor = Color(0xFF000000);
