@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:yellow_class/screens/login.dart';
 import 'package:yellow_class/utils/colors.dart';
 import 'package:yellow_class/utils/constant.dart';
+import 'package:yellow_class/utils/dialog_card.dart';
 import 'package:yellow_class/utils/extension.dart';
 import 'package:yellow_class/utils/strings.dart';
 import 'package:yellow_class/utils/widget.dart';
@@ -123,6 +124,17 @@ class _YellowClassSignUpState extends State<YellowClassSignUp> {
                                 await FirebaseAuth.instance.currentUser
                                     .updateProfile(
                                         displayName: user.displayName);
+                                Future.delayed(
+                                  const Duration(milliseconds: 500),
+                                  () {
+                                    showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) =>
+                                          CustomDialog(
+                                              true, "Successfully signed up"),
+                                    );
+                                  },
+                                );
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -130,6 +142,16 @@ class _YellowClassSignUpState extends State<YellowClassSignUp> {
                                             YellowClassLogin()));
                               }
                             } catch (e) {
+                              Future.delayed(
+                                const Duration(milliseconds: 1000),
+                                () {
+                                  showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) =>
+                                        CustomDialog(false, "Couldn't sign up"),
+                                  );
+                                },
+                              );
                               print(e);
                               nameController.text = "";
                               passwordController.text = "";

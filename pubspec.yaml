@@ -77,6 +77,8 @@ flutter:
     - images/course1.png
     - images/course2.jpg
     - images/course3.webp
+    - images/success.png
+    - images/sad.png
 
   #   - images/a_dot_ham.jpeg
 

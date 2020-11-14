@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:yellow_class/main.dart';
 import 'package:yellow_class/screens/signup.dart';
 import 'package:yellow_class/utils/colors.dart';
+import 'package:yellow_class/utils/dialog_card.dart';
 import 'package:yellow_class/utils/extension.dart';
 import 'package:yellow_class/utils/strings.dart';
 import 'package:yellow_class/utils/widget.dart';
@@ -94,6 +95,18 @@ class _YellowClassLoginState extends State<YellowClassLogin> {
                                     await SharedPreferences.getInstance();
                                 prefs.setString(
                                     'displayName', user.displayName);
+                                Future.delayed(
+                                  const Duration(milliseconds: 500),
+                                  () {
+                                    showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) =>
+                                          CustomDialog(
+                                              true, "Successfully logged in"),
+                                    );
+                                  },
+                                );
+
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -101,6 +114,16 @@ class _YellowClassLoginState extends State<YellowClassLogin> {
                                             MyHomePage(title: 'Yellow Class')));
                               }
                             } catch (e) {
+                              Future.delayed(
+                                const Duration(milliseconds: 1000),
+                                () {
+                                  showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) =>
+                                        CustomDialog(false, "Couldn't login"),
+                                  );
+                                },
+                              );
                               print(e);
                               emailController.text = "";
                               passwordController.text = "";
