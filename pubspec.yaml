@@ -40,6 +40,9 @@ dependencies:
   firebase_core: ^0.5.2
   firebase_auth: ^0.18.3
   google_sign_in: ^4.5.6
+  shared_preferences: ^0.5.12+4
+  flutter_volume_slider: ^1.0.6
+  vector_math: ^2.0.8
 
 dev_dependencies:
   flutter_test:
@@ -64,6 +67,12 @@ flutter:
     - images/walk_1.png
     - images/walk_2.png
     - images/walk_3.png
+    - images/chart_navigation.svg
+    - images/message_navigation.svg
+    - images/home_navigation.svg
+    - images/more_navigation.svg
+    - images/search_navigation.svg
+
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

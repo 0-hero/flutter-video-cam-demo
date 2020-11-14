@@ -1,11 +1,12 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:yellow_class/main.dart';
 import 'package:yellow_class/screens/signup.dart';
 import 'package:yellow_class/utils/colors.dart';
 import 'package:yellow_class/utils/extension.dart';
-import 'package:yellow_class/utils/images.dart';
 import 'package:yellow_class/utils/strings.dart';
 import 'package:yellow_class/utils/widget.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class YellowClassLogin extends StatefulWidget {
   @override
@@ -17,6 +18,8 @@ class _YellowClassLoginState extends State<YellowClassLogin> {
   Widget build(BuildContext context) {
     changeStatusColor(yellow_class_layout_background);
     var width = MediaQuery.of(context).size.width;
+    TextEditingController emailController = new TextEditingController();
+    TextEditingController passwordController = new TextEditingController();
     return Scaffold(
       backgroundColor: yellow_class_layout_background,
       body: Stack(
@@ -60,12 +63,14 @@ class _YellowClassLoginState extends State<YellowClassLogin> {
                     SizedBox(
                       height: 30,
                     ),
-                    YellowClassEditTextStyle(yellow_class_hint_email,
+                    YellowClassEditTextStyle(
+                        yellow_class_hint_email, emailController,
                         isPassword: false),
                     SizedBox(
                       height: 16,
                     ),
-                    YellowClassEditTextStyle(yellow_class_hint_password,
+                    YellowClassEditTextStyle(
+                        yellow_class_hint_password, passwordController,
                         isPassword: true),
                     SizedBox(
                       height: 50,
@@ -76,7 +81,32 @@ class _YellowClassLoginState extends State<YellowClassLogin> {
                         width: 120,
                         alignment: Alignment.center,
                         child: YellowClassButton(
-                          onPressed: () {},
+                          onPressed: () async {
+                            try {
+                              User user = (await FirebaseAuth.instance
+                                      .signInWithEmailAndPassword(
+                                email: emailController.text,
+                                password: passwordController.text,
+                              ))
+                                  .user;
+                              if (user != null) {
+                                SharedPreferences prefs =
+                                    await SharedPreferences.getInstance();
+                                prefs.setString(
+                                    'displayName', user.displayName);
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            MyHomePage(title: 'Yellow Class')));
+                              }
+                            } catch (e) {
+                              print(e);
+                              emailController.text = "";
+                              passwordController.text = "";
+                              // TODO: AlertDialog with error
+                            }
+                          },
                           textContent: yellow_class_lbl_enter,
                         ),
                       ),

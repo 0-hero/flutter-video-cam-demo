@@ -77,6 +77,8 @@ class _VideoScreenState extends State<VideoScreen> {
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.landscapeRight,
       DeviceOrientation.landscapeLeft,
+      DeviceOrientation.portraitDown,
+      DeviceOrientation.portraitUp,
     ]);
     flickManager = FlickManager(
         videoPlayerController: VideoPlayerController.network(widget.url));
@@ -101,6 +103,8 @@ class _VideoScreenState extends State<VideoScreen> {
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.landscapeRight,
       DeviceOrientation.landscapeLeft,
+      DeviceOrientation.portraitDown,
+      DeviceOrientation.portraitUp,
     ]);
     super.dispose();
   }

@@ -42,13 +42,16 @@ BoxDecoration boxDecoration(
       borderRadius: BorderRadius.all(Radius.circular(radius)));
 }
 
-Container YellowClassEditTextStyle(var hintText, {isPassword = false}) {
+Container YellowClassEditTextStyle(
+    var hintText, TextEditingController textEditing,
+    {isPassword = false}) {
   return Container(
     decoration: boxDecoration(
         radius: 40, showShadow: true, bgColor: yellow_class_white),
     child: TextFormField(
       style: TextStyle(fontSize: textSizeMedium, fontFamily: fontRegular),
       obscureText: isPassword,
+      controller: textEditing,
       decoration: InputDecoration(
         contentPadding: EdgeInsets.fromLTRB(24, 18, 24, 18),
         hintText: hintText,

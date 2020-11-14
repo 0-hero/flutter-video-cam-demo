@@ -1,10 +1,11 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:yellow_class/screens/login.dart';
 import 'package:yellow_class/utils/colors.dart';
 import 'package:yellow_class/utils/constant.dart';
 import 'package:yellow_class/utils/extension.dart';
 import 'package:yellow_class/utils/strings.dart';
 import 'package:yellow_class/utils/widget.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class YellowClassSignUp extends StatefulWidget {
   @override
@@ -16,6 +17,9 @@ class _YellowClassSignUpState extends State<YellowClassSignUp> {
   Widget build(BuildContext context) {
     changeStatusColor(yellow_class_layout_background);
     var width = MediaQuery.of(context).size.width;
+    TextEditingController emailController = new TextEditingController();
+    TextEditingController passwordController = new TextEditingController();
+    TextEditingController nameController = new TextEditingController();
     return Scaffold(
       backgroundColor: yellow_class_layout_background,
       body: Column(
@@ -59,17 +63,46 @@ class _YellowClassSignUpState extends State<YellowClassSignUp> {
                       SizedBox(
                         height: 30,
                       ),
-                      YellowClassEditTextStyle(yellow_class_hint_full_name,
+                      Container(
+                        decoration: boxDecoration(
+                            radius: 40,
+                            showShadow: true,
+                            bgColor: yellow_class_white),
+                        child: TextFormField(
+                          style: TextStyle(
+                              fontSize: textSizeMedium,
+                              fontFamily: fontRegular),
+                          obscureText: false,
+                          controller: nameController,
+                          decoration: InputDecoration(
+                            contentPadding: EdgeInsets.fromLTRB(24, 18, 24, 18),
+                            hintText: yellow_class_hint_full_name,
+                            filled: true,
+                            fillColor: yellow_class_white,
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(40),
+                              borderSide: const BorderSide(
+                                  color: yellow_class_white, width: 0.0),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(40),
+                              borderSide: const BorderSide(
+                                  color: yellow_class_white, width: 0.0),
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 16,
+                      ),
+                      YellowClassEditTextStyle(
+                          yellow_class_hint_email, emailController,
                           isPassword: false),
                       SizedBox(
                         height: 16,
                       ),
-                      YellowClassEditTextStyle(yellow_class_hint_email,
-                          isPassword: false),
-                      SizedBox(
-                        height: 16,
-                      ),
-                      YellowClassEditTextStyle(yellow_class_hint_password,
+                      YellowClassEditTextStyle(
+                          yellow_class_hint_password, passwordController,
                           isPassword: true),
                       SizedBox(
                         height: 50,
@@ -78,8 +111,31 @@ class _YellowClassSignUpState extends State<YellowClassSignUp> {
                         width: 120,
                         alignment: Alignment.center,
                         child: YellowClassButton(
-                          onPressed: () {
-                            Navigator.of(context).pop();
+                          onPressed: () async {
+                            try {
+                              User user = (await FirebaseAuth.instance
+                                      .createUserWithEmailAndPassword(
+                                email: emailController.text,
+                                password: passwordController.text,
+                              ))
+                                  .user;
+                              if (user != null) {
+                                await FirebaseAuth.instance.currentUser
+                                    .updateProfile(
+                                        displayName: user.displayName);
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            YellowClassLogin()));
+                              }
+                            } catch (e) {
+                              print(e);
+                              nameController.text = "";
+                              passwordController.text = "";
+                              emailController.text = "";
+                              // TODO: alertdialog with error
+                            }
                           },
                           textContent: yellow_class_lbl_join,
                         ),
