@@ -39,10 +39,10 @@ class _ProfileState extends State<Profile> {
   }
 
   _getCurrentUser() async {
-    mCurrentUser = await _auth.currentUser;
+    mCurrentUser = _auth.currentUser;
     print('Hello ' + mCurrentUser.displayName.toString());
     setState(() {
-      mCurrentUser != null ? loggedin = true : false;
+      mCurrentUser != null ? loggedin = true : loggedin = false;
     });
   }
 
@@ -59,7 +59,7 @@ class _ProfileState extends State<Profile> {
     );
     final profileContent = loggedin
         ? Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               Container(
                 margin: EdgeInsets.only(top: 16, left: 16, right: 16),
@@ -152,14 +152,27 @@ class _ProfileState extends State<Profile> {
                         yellow_class_lbl_update_interests),
                     classOption(
                         "images/block.svg", yellow_class_lbl_blocked_users),
-                    SizedBox(height: 16),
-                    text("Made by 17BCE2189",
-                        textColor: yellow_class_textColorPrimary,
-                        fontSize: textSizeMedium,
-                        fontFamily: fontMedium),
-                    SizedBox(height: 8),
                   ],
                 ),
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  SizedBox(height: 16),
+                  text("Made by 17BCE2189",
+                      textColor: yellow_class_textColorPrimary,
+                      fontSize: textSizeMedium,
+                      fontFamily: fontMedium),
+                  text("prasadchandalada@gmail.com",
+                      textColor: yellow_class_textColorPrimary,
+                      fontSize: textSizeMedium,
+                      fontFamily: fontMedium),
+                  text("tulasi-ram.com",
+                      textColor: yellow_class_textColorPrimary,
+                      fontSize: textSizeMedium,
+                      fontFamily: fontMedium),
+                  SizedBox(height: 8),
+                ],
               ),
               Padding(
                 padding: const EdgeInsets.all(16),
@@ -194,12 +207,25 @@ class _ProfileState extends State<Profile> {
                               builder: (context) => YellowClassLogin()));
                     },
                   ),
-                  SizedBox(height: 16),
-                  text("Made by 17BCE2189",
-                      textColor: yellow_class_textColorPrimary,
-                      fontSize: textSizeMedium,
-                      fontFamily: fontMedium),
-                  SizedBox(height: 8),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      SizedBox(height: 16),
+                      text("Made by 17BCE2189",
+                          textColor: yellow_class_textColorPrimary,
+                          fontSize: textSizeMedium,
+                          fontFamily: fontMedium),
+                      text("prasadchandalada@gmail.com",
+                          textColor: yellow_class_textColorPrimary,
+                          fontSize: textSizeMedium,
+                          fontFamily: fontMedium),
+                      text("tulasi-ram.com",
+                          textColor: yellow_class_textColorPrimary,
+                          fontSize: textSizeMedium,
+                          fontFamily: fontMedium),
+                      SizedBox(height: 8),
+                    ],
+                  ),
                   Padding(
                     padding: const EdgeInsets.all(16),
                     child: view(),

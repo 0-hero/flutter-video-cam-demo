@@ -127,7 +127,6 @@ class _YellowClassLoginState extends State<YellowClassLogin> {
                               print(e);
                               emailController.text = "";
                               passwordController.text = "";
-                              // TODO: AlertDialog with error
                             }
                           },
                           textContent: yellow_class_lbl_enter,

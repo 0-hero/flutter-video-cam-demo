@@ -54,7 +54,6 @@ class _ChartState extends State<Chart> {
     setState(() {});
   }
 
-  @override
   // to check if the current date has any event or not.
   void _handleNewDate(DateTime date) {
     setState(() {
