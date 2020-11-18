@@ -79,6 +79,16 @@ flutter:
     - images/course3.webp
     - images/success.png
     - images/sad.png
+    - images/user.svg
+    - images/heart.svg
+    - images/key.svg
+    - images/achievements.svg
+    - images/block.svg
+    - images/correct.svg
+    - images/medal.png
+    - images/crown.png
+    - images/cup.png
+    - images/flag.png
 
   #   - images/a_dot_ham.jpeg
 

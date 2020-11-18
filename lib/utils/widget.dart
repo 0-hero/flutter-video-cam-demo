@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:yellow_class/models/models.dart';
 import 'package:yellow_class/utils/colors.dart';
 import 'package:yellow_class/utils/constant.dart';
@@ -271,4 +272,55 @@ class T9ButtonState extends State<YellowClassButton> {
     // TODO: implement createState
     return null;
   }
+}
+
+Widget classOption(var icon, var heading) {
+  return Padding(
+    padding: EdgeInsets.fromLTRB(16, 10, 16, 8),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: <Widget>[
+        Row(
+          children: <Widget>[
+            Container(
+              decoration: boxDecoration(
+                  bgColor: yellow_class_white, radius: 8, showShadow: true),
+              width: 40,
+              height: 40,
+              padding: EdgeInsets.all(10),
+              child: SvgPicture.asset(
+                icon,
+              ),
+            ),
+            SizedBox(
+              width: 16,
+            ),
+            text(heading,
+                textColor: yellow_class_textColorPrimary,
+                fontSize: textSizeLargeMedium,
+                fontFamily: fontSemibold),
+          ],
+        ),
+        Icon(
+          Icons.keyboard_arrow_right,
+          color: yellow_class_textColorSecondary,
+        ),
+      ],
+    ),
+  );
+}
+
+Widget classAward(var icon, var bgColor) {
+  return Container(
+    margin: EdgeInsets.only(right: 10),
+    width: 35,
+    height: 35,
+    decoration: BoxDecoration(shape: BoxShape.circle, color: bgColor),
+    child: Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Image.asset(
+        icon,
+      ),
+    ),
+  );
 }
